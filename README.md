@@ -1,2 +1,866 @@
-# ShoptogoAuthentic
-Website
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP TO GO Authentic | Authentic US & Japanese Luxury Goods</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#E6C659',
+                            500: '#D4AF37',
+                            600: '#AA820A',
+                        },
+                        charcoal: {
+                            800: '#1A1A1A',
+                            900: '#111111',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gold-gradient {
+            background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+        }
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #AA820A 0%, #D4AF37 50%, #8A6805 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #BF953F, #FCF6BA, #B38728) 1;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-charcoal-900 font-sans antialiased selection:bg-gold-500 selection:text-white flex flex-col min-h-screen">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-charcoal-900 text-gold-400 text-xs py-2 px-4 text-center tracking-widest uppercase font-medium flex justify-between items-center max-w-full">
+        <div class="hidden sm:block">📍 Direct Imports from USA & Japan</div>
+        <div class="w-full sm:w-auto text-center">✨ 100% Guaranteed Authentic Handbags, Footwear & Apparel</div>
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="https://www.facebook.com/shoptogoauthenticuae" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="Facebook Page">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://m.me/shoptogoauthenticuae" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="Messenger">
+                <i class="fab fa-facebook-messenger"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-charcoal-800 hover:text-gold-500 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <!-- Brand Logo -->
+                <a href="#" class="flex flex-col items-center group">
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-widest text-charcoal-900 group-hover:text-gold-600 transition-colors">
+                        SHOP TO GO
+                    </span>
+                    <span class="text-[10px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-gold-600">
+                        AUTHENTIC
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide uppercase">
+                    <a href="#hero" class="text-charcoal-900 hover:text-gold-600 transition-colors py-1 border-b-2 border-transparent hover:border-gold-500">Home</a>
+                    <a href="#catalog" class="text-charcoal-900 hover:text-gold-600 transition-colors py-1 border-b-2 border-transparent hover:border-gold-500">Catalog</a>
+                    <a href="#authenticity" class="text-charcoal-900 hover:text-gold-600 transition-colors py-1 border-b-2 border-transparent hover:border-gold-500">Authenticity</a>
+                    <a href="#how-to-order" class="text-charcoal-900 hover:text-gold-600 transition-colors py-1 border-b-2 border-transparent hover:border-gold-500">How To Order</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.facebook.com/shoptogoauthenticuae" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center px-4 py-2 border border-charcoal-900 text-xs font-semibold tracking-wider uppercase text-charcoal-900 hover:bg-charcoal-900 hover:text-white transition-all rounded-sm shadow-sm">
+                        <i class="fab fa-facebook-f mr-2 text-blue-600"></i> Facebook
+                    </a>
+                    
+                    <!-- Wishlist / Inquiry Bag Counter -->
+                    <button onclick="toggleInquiryDrawer()" class="relative p-2 text-charcoal-800 hover:text-gold-600 transition-colors">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span id="bag-count" class="absolute -top-1 -right-1 bg-gold-500 text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" class="block text-sm font-medium text-charcoal-800 hover:text-gold-600 py-2">Home</a>
+            <a href="#catalog" class="block text-sm font-medium text-charcoal-800 hover:text-gold-600 py-2">Product Catalog</a>
+            <a href="#authenticity" class="block text-sm font-medium text-charcoal-800 hover:text-gold-600 py-2">Authenticity Guarantee</a>
+            <a href="#how-to-order" class="block text-sm font-medium text-charcoal-800 hover:text-gold-600 py-2">How To Order</a>
+            <div class="pt-2 border-t border-gray-100 flex space-x-4">
+                <a href="https://www.facebook.com/shoptogoauthenticuae" target="_blank" class="w-full py-2 bg-blue-600 text-white text-center text-xs font-semibold rounded uppercase tracking-wider">
+                    Visit FB Page
+                </a>
+                <a href="https://m.me/shoptogoauthenticuae" target="_blank" class="w-full py-2 bg-charcoal-900 text-gold-400 text-center text-xs font-semibold rounded uppercase tracking-wider">
+                    Message Us
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative bg-charcoal-900 text-white overflow-hidden py-16 lg:py-24">
+        <!-- Background Decorative Grid/Overlay -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400 text-xs tracking-widest uppercase font-medium">
+                        <i class="fas fa-certificate text-gold-400"></i>
+                        <span>100% Guaranteed Genuine Luxury</span>
+                    </div>
+
+                    <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-tight tracking-tight">
+                        Curated Luxury Goods <br class="hidden sm:inline">
+                        <span class="italic font-light text-gold-400">Direct from USA & Japan</span>
+                    </h1>
+
+                    <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Discover authentic luxury handbags, footwear, apparel, and designer accessories. Verified authenticity, premium condition, and seamless shipping direct to your doorstep.
+                    </p>
+
+                    <!-- Featured Brand Tags -->
+                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-2 text-xs font-medium text-gray-400">
+                        <span class="px-2.5 py-1 bg-white/5 border border-white/10 rounded-sm">Bottega Veneta</span>
+                        <span class="px-2.5 py-1 bg-white/5 border border-white/10 rounded-sm">Tory Burch</span>
+                        <span class="px-2.5 py-1 bg-white/5 border border-white/10 rounded-sm">Marc Jacobs</span>
+                        <span class="px-2.5 py-1 bg-white/5 border border-white/10 rounded-sm">Coach</span>
+                        <span class="px-2.5 py-1 bg-white/5 border border-white/10 rounded-sm">Onitsuka Tiger</span>
+                    </div>
+
+                    <!-- Call To Action Buttons -->
+                    <div class="pt-4 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
+                        <a href="#catalog" class="w-full sm:w-auto px-8 py-3.5 bg-gold-500 hover:bg-gold-600 text-charcoal-900 font-semibold text-xs tracking-widest uppercase transition-all shadow-lg rounded-sm text-center">
+                            Explore Catalog <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="https://m.me/shoptogoauthenticuae" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 border border-white/30 hover:border-gold-400 hover:text-gold-400 text-white font-semibold text-xs tracking-widest uppercase transition-all rounded-sm text-center">
+                            <i class="fab fa-facebook-messenger mr-2 text-blue-400"></i> Direct Inquiry
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Hero Image Stack / Visual Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Main Card Showcase -->
+                        <div class="bg-white/5 border border-white/10 p-3 rounded-lg shadow-2xl backdrop-blur-sm">
+                            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80" alt="Luxury Handbag Showcase" class="w-full h-80 sm:h-96 object-cover rounded shadow">
+                            <div class="mt-4 p-2 text-center">
+                                <span class="text-xs uppercase tracking-widest text-gold-400 font-semibold">New Arrival</span>
+                                <h3 class="font-serif text-lg text-white font-medium">Designer Luxury Collection</h3>
+                                <p class="text-xs text-gray-400 mt-1">Verified Authentic Import</p>
+                            </div>
+                        </div>
+
+                        <!-- Badge Overlay -->
+                        <div class="absolute -bottom-6 -left-6 bg-white text-charcoal-900 p-4 rounded-lg shadow-xl border border-gray-100 hidden sm:flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-600 flex items-center justify-center font-bold">
+                                <i class="fas fa-shield-alt text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider">100% Authentic</p>
+                                <p class="text-[11px] text-gray-500">Money-Back Guarantee</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition Banner -->
+    <section id="authenticity" class="bg-white border-b border-gray-200 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-4 rounded-lg">
+                    <div class="w-12 h-12 mx-auto mb-3 bg-gold-500/10 text-gold-600 rounded-full flex items-center justify-center text-xl">
+                        <i class="fas fa-plane-arrival"></i>
+                    </div>
+                    <h4 class="font-serif font-semibold text-charcoal-900 text-base">US & Japan Direct Imports</h4>
+                    <p class="text-xs text-gray-500 mt-1 max-w-xs mx-auto">Sourced directly from authorized outlets and retail stores in North America and Japan.</p>
+                </div>
+                <div class="p-4 rounded-lg">
+                    <div class="w-12 h-12 mx-auto mb-3 bg-gold-500/10 text-gold-600 rounded-full flex items-center justify-center text-xl">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h4 class="font-serif font-semibold text-charcoal-900 text-base">Rigorous Authenticity Checks</h4>
+                    <p class="text-xs text-gray-500 mt-1 max-w-xs mx-auto">Every item undergoes strict serial, hardware, stitching, and tag verification before listing.</p>
+                </div>
+                <div class="p-4 rounded-lg">
+                    <div class="w-12 h-12 mx-auto mb-3 bg-gold-500/10 text-gold-600 rounded-full flex items-center justify-center text-xl">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h4 class="font-serif font-semibold text-charcoal-900 text-base">Safe & Fast Delivery</h4>
+                    <p class="text-xs text-gray-500 mt-1 max-w-xs mx-auto">Carefully packaged with tracking provided for local and international order fulfillment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Catalog Section -->
+    <section id="catalog" class="py-16 bg-gray-50 flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-600">Exclusive Inventory</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-charcoal-900 mt-1">Explore Luxury Catalog</h2>
+                <div class="w-16 h-0.5 bg-gold-500 mx-auto mt-3"></div>
+            </div>
+
+            <!-- Controls: Category Tabs, Brand Filter & Search -->
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200 mb-8 space-y-4">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+                    
+                    <!-- Category Tabs -->
+                    <div class="flex items-center space-x-1 sm:space-x-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 hide-scrollbar">
+                        <button onclick="filterCategory('All')" class="cat-btn px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all bg-charcoal-900 text-white" data-cat="All">All Items</button>
+                        <button onclick="filterCategory('Handbags')" class="cat-btn px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all bg-gray-100 text-charcoal-800 hover:bg-gold-500 hover:text-white" data-cat="Handbags">Handbags</button>
+                        <button onclick="filterCategory('Footwear')" class="cat-btn px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all bg-gray-100 text-charcoal-800 hover:bg-gold-500 hover:text-white" data-cat="Footwear">Footwear</button>
+                        <button onclick="filterCategory('Apparel')" class="cat-btn px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all bg-gray-100 text-charcoal-800 hover:bg-gold-500 hover:text-white" data-cat="Apparel">Apparel</button>
+                        <button onclick="filterCategory('Accessories')" class="cat-btn px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all bg-gray-100 text-charcoal-800 hover:bg-gold-500 hover:text-white" data-cat="Accessories">Accessories</button>
+                    </div>
+
+                    <!-- Search & Brand Filter Dropdowns -->
+                    <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                        <!-- Brand Selector -->
+                        <div class="relative w-full sm:w-48">
+                            <select id="brand-select" onchange="applyFilters()" class="w-full bg-gray-50 border border-gray-300 text-charcoal-800 text-xs rounded-md px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-gold-500 appearance-none">
+                                <option value="All">All Brands</option>
+                                <option value="Burberry">Burberry</option>
+                                <option value="Bottega Veneta">Bottega Veneta</option>
+                                <option value="Tory Burch">Tory Burch</option>
+                                <option value="Marc Jacobs">Marc Jacobs</option>
+                                <option value="Coach">Coach</option>
+                                <option value="Kate Spade">Kate Spade</option>
+                                <option value="Celine">Celine</option>
+                                <option value="Onitsuka Tiger">Onitsuka Tiger</option>
+                            </select>
+                            <i class="fas fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
+                        </div>
+
+                        <!-- Search Input -->
+                        <div class="relative w-full sm:w-64">
+                            <input type="text" id="search-input" onkeyup="applyFilters()" placeholder="Search model, brand..." class="w-full bg-gray-50 border border-gray-300 text-charcoal-800 text-xs rounded-md pl-9 pr-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-gold-500">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-xs"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Product Grid Container -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Dynamic product cards will be injected here via JS -->
+            </div>
+
+            <!-- Empty State Notice -->
+            <div id="empty-state" class="hidden text-center py-16">
+                <i class="fas fa-search text-4xl text-gray-300 mb-3"></i>
+                <h3 class="font-serif text-lg font-medium text-gray-700">No products matched your search</h3>
+                <p class="text-xs text-gray-500 mt-1">Try resetting your filters or search terms.</p>
+                <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-charcoal-900 text-gold-400 text-xs uppercase font-semibold rounded">Reset Filters</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- How To Order Section -->
+    <section id="how-to-order" class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-600">Simple 3-Step Process</span>
+                <h2 class="font-serif text-3xl font-normal text-charcoal-900 mt-1">How To Order From Us</h2>
+                <p class="text-xs text-gray-500 mt-2">Ordering luxury imports with SHOP TO GO Authentic is direct and secure.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border border-gray-100 bg-gray-50 p-6 rounded-lg text-center relative">
+                    <span class="w-8 h-8 rounded-full bg-charcoal-900 text-gold-400 font-bold text-xs flex items-center justify-center mx-auto mb-4">1</span>
+                    <h3 class="font-serif font-semibold text-charcoal-900 text-base mb-2">Browse & Select</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">Choose your favorite handbag, shoes, or apparel from our online catalog or request a specific item model.</p>
+                </div>
+
+                <div class="border border-gray-100 bg-gray-50 p-6 rounded-lg text-center relative">
+                    <span class="w-8 h-8 rounded-full bg-charcoal-900 text-gold-400 font-bold text-xs flex items-center justify-center mx-auto mb-4">2</span>
+                    <h3 class="font-serif font-semibold text-charcoal-900 text-base mb-2">Inquire via Facebook</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">Click 'Inquire / Order' to message our Facebook page. We confirm stock availability, precise photos, and shipping details.</p>
+                </div>
+
+                <div class="border border-gray-100 bg-gray-50 p-6 rounded-lg text-center relative">
+                    <span class="w-8 h-8 rounded-full bg-charcoal-900 text-gold-400 font-bold text-xs flex items-center justify-center mx-auto mb-4">3</span>
+                    <h3 class="font-serif font-semibold text-charcoal-900 text-base mb-2">Secure Payment & Shipping</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">Complete payment through our secure bank/wallet options. Your verified authentic item is safely dispatched to you.</p>
+                </div>
+            </div>
+
+            <!-- Direct Contact Callout -->
+            <div class="mt-12 bg-charcoal-900 rounded-lg p-8 text-center text-white max-w-3xl mx-auto shadow-xl">
+                <h3 class="font-serif text-xl sm:text-2xl font-normal">Looking for a specific luxury item?</h3>
+                <p class="text-xs text-gray-300 mt-2 max-w-xl mx-auto">We offer personal shopping services for rare colors, specific handbag sizes, and footwear releases direct from US outlets and Japan stores.</p>
+                <div class="mt-6 flex flex-wrap justify-center gap-4">
+                    <a href="https://m.me/shoptogoauthenticuae" target="_blank" class="px-6 py-3 bg-gold-500 hover:bg-gold-600 text-charcoal-900 text-xs uppercase font-semibold tracking-wider rounded-sm">
+                        <i class="fab fa-facebook-messenger mr-2 text-base"></i> Send Photo Inquiry
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal-900 text-gray-400 text-xs py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Brand Info -->
+                <div class="space-y-3 md:col-span-1">
+                    <span class="font-serif text-xl font-bold tracking-widest text-white">SHOP TO GO</span>
+                    <p class="text-gold-500 text-[10px] tracking-[0.25em] uppercase font-semibold">AUTHENTIC</p>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed pt-2">
+                        Your premier boutique for verified authentic US and Japan imported designer bags, footwear, and apparel.
+                    </p>
+                </div>
+
+                <!-- Navigation -->
+                <div>
+                    <h4 class="text-white font-semibold uppercase tracking-wider mb-3 text-xs">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="hover:text-gold-400 transition-colors">Home</a></li>
+                        <li><a href="#catalog" class="hover:text-gold-400 transition-colors">Featured Catalog</a></li>
+                        <li><a href="#authenticity" class="hover:text-gold-400 transition-colors">Authenticity Guarantee</a></li>
+                        <li><a href="#how-to-order" class="hover:text-gold-400 transition-colors">How To Order</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Luxury Brands -->
+                <div>
+                    <h4 class="text-white font-semibold uppercase tracking-wider mb-3 text-xs">Featured Brands</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#catalog" onclick="selectBrandFilter('Bottega Veneta')" class="hover:text-gold-400 transition-colors">Bottega Veneta</a></li>
+                        <li><a href="#catalog" onclick="selectBrandFilter('Tory Burch')" class="hover:text-gold-400 transition-colors">Tory Burch</a></li>
+                        <li><a href="#catalog" onclick="selectBrandFilter('Marc Jacobs')" class="hover:text-gold-400 transition-colors">Marc Jacobs</a></li>
+                        <li><a href="#catalog" onclick="selectBrandFilter('Coach')" class="hover:text-gold-400 transition-colors">Coach & Celine</a></li>
+                        <li><a href="#catalog" onclick="selectBrandFilter('Onitsuka Tiger')" class="hover:text-gold-400 transition-colors">Onitsuka Tiger Japan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Connect / Social -->
+                <div>
+                    <h4 class="text-white font-semibold uppercase tracking-wider mb-3 text-xs">Connect With Us</h4>
+                    <p class="text-xs text-gray-400 mb-3">Visit our official Facebook page for live selling drops and customer reviews.</p>
+                    <div class="flex space-x-3">
+                        <a href="https://www.facebook.com/shoptogoauthenticuae" target="_blank" class="w-9 h-9 rounded-full bg-white/10 hover:bg-gold-500 hover:text-charcoal-900 flex items-center justify-center text-white transition-all" title="Facebook Page">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="https://m.me/shoptogoauthenticuae" target="_blank" class="w-9 h-9 rounded-full bg-white/10 hover:bg-gold-500 hover:text-charcoal-900 flex items-center justify-center text-white transition-all" title="Messenger">
+                            <i class="fab fa-facebook-messenger text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center text-gray-500 text-[11px] gap-4">
+                <p>© <span id="current-year"></span> SHOP TO GO Authentic. All rights reserved.</p>
+                <p>100% Guaranteed Authentic Imports | USA & Japan</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-fade-in">
+            <!-- Close Button -->
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-charcoal-800 flex items-center justify-center focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <!-- Modal Image Container -->
+                <div class="bg-gray-100 p-6 flex items-center justify-center relative">
+                    <img id="modal-img" src="" alt="" class="max-h-80 object-contain rounded">
+                    <span id="modal-badge" class="absolute top-4 left-4 bg-gold-500 text-white text-[10px] font-bold px-2.5 py-1 uppercase rounded tracking-wider">
+                        Authentic
+                    </span>
+                </div>
+
+                <!-- Modal Product Details -->
+                <div class="p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span id="modal-brand" class="text-xs uppercase font-bold tracking-widest text-gold-600">BRAND</span>
+                            <span id="modal-origin" class="text-[10px] bg-gray-100 px-2 py-0.5 rounded text-gray-600 uppercase font-medium">USA Import</span>
+                        </div>
+                        <h3 id="modal-title" class="font-serif text-2xl font-semibold text-charcoal-900 mt-1">Product Title</h3>
+                        <p id="modal-price" class="text-xl font-bold text-charcoal-900 mt-2">AED 0.00</p>
+                        
+                        <div class="my-4 border-t border-b border-gray-100 py-3 space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-gray-500">Condition:</span>
+                                <span id="modal-condition" class="font-semibold text-charcoal-800">Brand New with Tags</span>
+                            </div>
+                            <div class="flex justify-between text-xs">
+                                <span class="text-gray-500">Availability:</span>
+                                <span class="font-semibold text-emerald-600"><i class="fas fa-check-circle mr-1"></i> In Stock (Limited)</span>
+                            </div>
+                        </div>
+
+                        <p id="modal-desc" class="text-xs text-gray-600 leading-relaxed font-light">
+                            Item detailed description placeholder...
+                        </p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="space-y-2 pt-4">
+                        <button id="modal-order-btn" onclick="" class="w-full py-3 bg-gold-500 hover:bg-gold-600 text-charcoal-900 text-xs uppercase font-bold tracking-widest rounded transition-colors flex items-center justify-center">
+                            <i class="fab fa-facebook-messenger mr-2 text-base"></i> Order via Facebook Messenger
+                        </button>
+                        <button id="modal-add-bag-btn" onclick="" class="w-full py-2.5 border border-charcoal-900 hover:bg-charcoal-900 hover:text-white text-charcoal-900 text-xs uppercase font-semibold tracking-wider rounded transition-colors">
+                            Add to Inquiry Bag
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inquiry Bag Drawer -->
+    <div id="inquiry-drawer" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex justify-end">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between">
+            
+            <!-- Drawer Header -->
+            <div class="p-4 border-b border-gray-200 flex items-center justify-between bg-charcoal-900 text-white">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-shopping-bag text-gold-400"></i>
+                    <h3 class="font-serif font-medium text-base">Inquiry List (<span id="drawer-count">0</span>)</h3>
+                </div>
+                <button onclick="toggleInquiryDrawer()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Drawer List -->
+            <div id="drawer-items" class="p-4 overflow-y-auto flex-grow space-y-4">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Drawer Footer -->
+            <div class="p-4 border-t border-gray-200 bg-gray-50 space-y-3">
+                <div class="flex justify-between text-sm font-semibold text-charcoal-900">
+                    <span>Estimated Total:</span>
+                    <span id="drawer-total">AED 0</span>
+                </div>
+                <p class="text-[11px] text-gray-500 leading-tight">
+                    Send your list directly to our Facebook page to check availability and shipping rates.
+                </p>
+                <button onclick="sendBulkInquiry()" class="w-full py-3 bg-gold-500 hover:bg-gold-600 text-charcoal-900 font-bold text-xs uppercase tracking-widest rounded shadow transition-colors flex items-center justify-center">
+                    <i class="fab fa-facebook-messenger mr-2 text-base"></i> Send List To Messenger
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-charcoal-900 text-white px-4 py-3 rounded shadow-xl border-l-4 border-gold-500 flex items-center space-x-3 hidden transition-all">
+        <i class="fas fa-check-circle text-gold-400"></i>
+        <span id="toast-msg" class="text-xs font-medium">Item added to inquiry list</span>
+    </div>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        // Sample Product Data representing SHOP TO GO Authentic luxury collection
+        const products = [
+            {
+                id: 1,
+                title: "Burberry Vintage Check Camera Bag",
+                brand: "Burberry",
+                category: "Handbags",
+                price: 28500,
+                currency: "₱",
+                condition: "Brand New with Tags",
+                origin: "Imported",
+                image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000&auto=format&fit=crop",
+                description: "Iconic Burberry vintage check canvas camera bag with luxury brown leather trim and gold-tone hardware."
+            },
+            {
+                id: 2,
+                title: "Bottega Veneta Small Cassette Bag",
+                brand: "Bottega Veneta",
+                category: "Handbags",
+                price: 7450,
+                currency: "AED",
+                condition: "Brand New with Dustbag",
+                origin: "Japan Import",
+                image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80",
+                description: "Signature padded Intrecciato woven leather shoulder bag in pristine condition. Features adjustable strap and magnetic closure."
+            },
+            {
+                id: 2,
+                title: "Tory Burch Eleanor Convertible Shoulder Bag",
+                brand: "Tory Burch",
+                category: "Handbags",
+                price: 1850,
+                currency: "AED",
+                condition: "Brand New with Tags",
+                origin: "USA Outlet Import",
+                image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80",
+                description: "Sculpted in clean leather with iconic oversized brass logo hardware. Converts easily from shoulder to crossbody wear."
+            },
+            {
+                id: 3,
+                title: "Marc Jacobs The Tote Bag (Medium)",
+                brand: "Marc Jacobs",
+                category: "Handbags",
+                price: 1150,
+                currency: "AED",
+                condition: "Brand New with Tags",
+                origin: "USA Import",
+                image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=600&q=80",
+                description: "Versatile canvas tote featuring bold screen-printed logo, top zip closure, and sturdy top handles. Ideal for daily utility."
+            },
+            {
+                id: 4,
+                title: "Coach Pillow Tabby Shoulder Bag 26",
+                brand: "Coach",
+                category: "Handbags",
+                price: 1680,
+                currency: "AED",
+                condition: "Brand New with Tags & Dustbag",
+                origin: "USA Import",
+                image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80",
+                description: "Plush nappa leather iteration of the iconic 1970s Coach design. Includes detachable short and long straps."
+            },
+            {
+                id: 5,
+                title: "Onitsuka Tiger Mexico 66 Leather Sneakers",
+                brand: "Onitsuka Tiger",
+                category: "Footwear",
+                price: 520,
+                currency: "AED",
+                condition: "Brand New in Original Box",
+                origin: "Japan Direct Import",
+                image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
+                description: "Classic retro sneaker crafted from premium white leather with navy/red stripes. Authentic Japan retail stock."
+            },
+            {
+                id: 6,
+                title: "Kate Spade Knott Medium Satchel",
+                brand: "Kate Spade",
+                category: "Handbags",
+                price: 980,
+                currency: "AED",
+                condition: "Brand New",
+                origin: "USA Import",
+                image: "https://images.unsplash.com/photo-1566150492200-a26413afb664?auto=format&fit=crop&w=600&q=80",
+                description: "Pebbled leather handbag with side cinch knots and multiple internal organizing compartments."
+            },
+            {
+                id: 7,
+                title: "Celine Triomphe Canvas Card Holder",
+                brand: "Celine",
+                category: "Accessories",
+                price: 1350,
+                currency: "AED",
+                condition: "Brand New Boxed",
+                origin: "Japan Boutique Import",
+                image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80",
+                description: "Compact card holder in Triomphe coated canvas with calfskin lining and multiple credit card slots."
+            },
+            {
+                id: 8,
+                title: "Tory Burch Minnie Travel Ballet Flats",
+                brand: "Tory Burch",
+                category: "Footwear",
+                price: 790,
+                currency: "AED",
+                condition: "Brand New in Box",
+                origin: "USA Import",
+                image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80",
+                description: "Foldable soft nappa leather flats with signature metal Double T logo at the toe. Maximum comfort for travel."
+            }
+        ];
+
+        // Global State
+        let currentCategory = 'All';
+        let inquiryBag = [];
+
+        // Dynamic Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            renderProducts(products);
+            
+            // Setup Mobile Menu Toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+
+        // Render Product Grid Card List
+        function renderProducts(items) {
+            const container = document.getElementById('product-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            container.innerHTML = '';
+
+            if (items.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group";
+                
+                card.innerHTML = `
+                    <div class="relative overflow-hidden cursor-pointer bg-gray-100" onclick="openProductModal(${item.id})">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-charcoal-900/90 text-gold-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                            ${item.origin}
+                        </div>
+                        <div class="absolute top-3 right-3 bg-emerald-700 text-white text-[10px] font-semibold px-2 py-0.5 rounded uppercase tracking-wider">
+                            Authentic
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase font-bold tracking-widest text-gold-600">${item.brand}</span>
+                            <h3 class="font-serif text-base font-semibold text-charcoal-900 mt-0.5 line-clamp-1 hover:text-gold-600 cursor-pointer" onclick="openProductModal(${item.id})">${item.title}</h3>
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-2 font-light">${item.description}</p>
+                        </div>
+                        
+                        <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-light">Price</span>
+                                <span class="text-base font-bold text-charcoal-900">${item.currency} ${item.price.toLocaleString()}</span>
+                            </div>
+                            
+                            <div class="flex space-x-1">
+                                <button onclick="addToBag(${item.id})" class="p-2 border border-gray-300 hover:border-gold-500 hover:text-gold-600 text-gray-700 rounded transition-colors" title="Add to Inquiry Bag">
+                                    <i class="fas fa-shopping-bag text-sm"></i>
+                                </button>
+                                <a href="https://m.me/shoptogoauthenticuae?text=${encodeURIComponent('Hi SHOP TO GO Authentic, I am interested in: ' + item.title + ' (' + item.currency + ' ' + item.price + ')')}" target="_blank" class="px-3 py-2 bg-gold-500 hover:bg-gold-600 text-charcoal-900 text-xs font-semibold uppercase tracking-wider rounded transition-colors flex items-center">
+                                    <i class="fab fa-facebook-messenger mr-1.5"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Category Filter Action
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // Update Active Buttons
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.className = "cat-btn px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all bg-charcoal-900 text-white";
+                } else {
+                    btn.className = "cat-btn px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all bg-gray-100 text-charcoal-800 hover:bg-gold-500 hover:text-white";
+                }
+            });
+
+            applyFilters();
+        }
+
+        // Apply Search and Brand Dropdown Filters
+        function applyFilters() {
+            const brandValue = document.getElementById('brand-select').value;
+            const searchValue = document.getElementById('search-input').value.toLowerCase().trim();
+
+            const filtered = products.filter(item => {
+                const matchCategory = (currentCategory === 'All' || item.category === currentCategory);
+                const matchBrand = (brandValue === 'All' || item.brand === brandValue);
+                const matchSearch = item.title.toLowerCase().includes(searchValue) || item.brand.toLowerCase().includes(searchValue) || item.description.toLowerCase().includes(searchValue);
+
+                return matchCategory && matchBrand && matchSearch;
+            });
+
+            renderProducts(filtered);
+        }
+
+        // Helper to trigger specific brand filter from footer links
+        function selectBrandFilter(brandName) {
+            document.getElementById('brand-select').value = brandName;
+            applyFilters();
+        }
+
+        // Reset All Filters
+        function resetFilters() {
+            document.getElementById('brand-select').value = 'All';
+            document.getElementById('search-input').value = '';
+            filterCategory('All');
+        }
+
+        // Open Product Modal with Details
+        function openProductModal(productId) {
+            const item = products.find(p => p.id === productId);
+            if (!item) return;
+
+            document.getElementById('modal-img').src = item.image;
+            document.getElementById('modal-brand').textContent = item.brand;
+            document.getElementById('modal-title').textContent = item.title;
+            document.getElementById('modal-price').textContent = `${item.currency} ${item.price.toLocaleString()}`;
+            document.getElementById('modal-condition').textContent = item.condition;
+            document.getElementById('modal-origin').textContent = item.origin;
+            document.getElementById('modal-desc').textContent = item.description;
+
+            // Direct messenger order link
+            const msgText = encodeURIComponent(`Hi SHOP TO GO Authentic, I would like to inquire/order this item:\n- Item: ${item.title}\n- Brand: ${item.brand}\n- Price: ${item.currency} ${item.price}`);
+            document.getElementById('modal-order-btn').onclick = () => {
+                window.open(`https://m.me/shoptogoauthenticuae?text=${msgText}`, '_blank');
+            };
+
+            document.getElementById('modal-add-bag-btn').onclick = () => {
+                addToBag(item.id);
+                closeProductModal();
+            };
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        // Close Product Modal
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        // Add Item to Inquiry Bag
+        function addToBag(productId) {
+            const item = products.find(p => p.id === productId);
+            if (!item) return;
+
+            inquiryBag.push(item);
+            updateBagUI();
+            showToast(`Added "${item.title}" to inquiry list.`);
+        }
+
+        // Remove item from Inquiry Bag
+        function removeFromBag(index) {
+            inquiryBag.splice(index, 1);
+            updateBagUI();
+        }
+
+        // Update Bag Counters & Drawer List UI
+        function updateBagUI() {
+            const countElem = document.getElementById('bag-count');
+            const drawerCount = document.getElementById('drawer-count');
+            const drawerItems = document.getElementById('drawer-items');
+            const drawerTotal = document.getElementById('drawer-total');
+
+            countElem.textContent = inquiryBag.length;
+            drawerCount.textContent = inquiryBag.length;
+
+            if (inquiryBag.length === 0) {
+                drawerItems.innerHTML = `<p class="text-xs text-gray-400 text-center py-8">Your inquiry list is empty.</p>`;
+                drawerTotal.textContent = `AED 0`;
+                return;
+            }
+
+            let total = 0;
+            drawerItems.innerHTML = '';
+
+            inquiryBag.forEach((item, idx) => {
+                total += item.price;
+                const row = document.createElement('div');
+                row.className = "flex items-center justify-between border-b border-gray-100 pb-3";
+                row.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <img src="${item.image}" alt="" class="w-12 h-12 object-cover rounded">
+                        <div>
+                            <h4 class="text-xs font-semibold text-charcoal-900 line-clamp-1">${item.title}</h4>
+                            <span class="text-[11px] text-gray-500">${item.currency} ${item.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                    <button onclick="removeFromBag(${idx})" class="text-gray-400 hover:text-red-500 text-xs p-1">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                `;
+                drawerItems.appendChild(row);
+            });
+
+            drawerTotal.textContent = `AED ${total.toLocaleString()}`;
+        }
+
+        // Toggle Drawer Visibility
+        function toggleInquiryDrawer() {
+            const drawer = document.getElementById('inquiry-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // Send Bulk List to Facebook Messenger
+        function sendBulkInquiry() {
+            if (inquiryBag.length === 0) {
+                showToast("Your inquiry list is empty.");
+                return;
+            }
+
+            let message = "Hi SHOP TO GO Authentic! I am interested in inquiring about the following items:\n\n";
+            inquiryBag.forEach((item, index) => {
+                message += `${index + 1}. ${item.title} - ${item.currency} ${item.price.toLocaleString()}\n`;
+            });
+            message += "\nPlease let me know availability and payment details. Thank you!";
+
+            window.open(`https://m.me/shoptogoauthenticuae?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Show Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.textContent = message;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
